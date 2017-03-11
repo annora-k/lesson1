@@ -6,7 +6,7 @@ def main():
 
 	dp = updater.dispatcher
 	dp.add_handler(CommandHandler('start', greet_user))
-	dp.add_handler(MessageHandler([Filters.text], talk_to_me))
+	dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
 	dp.add_error_handler(show_error)
 
