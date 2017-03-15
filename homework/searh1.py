@@ -5,7 +5,11 @@ def find_person(name):
 		if name == names:
 			return names
 			
+
+def find_person2(name):
+	if name in list_name:
+		return name
+
 result = find_person('Валера')
 print(result)
-
 

@@ -1,18 +1,8 @@
-question= input('Как дела? ')
+def ask_user():
+	while True:
+		answer = input('Как дела? ')
 
-def get_ask(question):
-	a  = 'Как дела? '
-	return a
+		if answer.lower() == 'хорошо':
+			break
 
-while True:
-	if question == 'Хорошо':
-		print('Пока')
-		break
-	else:
-		ask = get_ask(question)
-		print(ask)
-		break
-	
-
-
-def find_person(name):
+ask_user()

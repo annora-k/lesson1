@@ -6,11 +6,3 @@ while list_name:
 		break
 
 print(list_name)
-
-
-
-def find_person(name):
-	for name in list_name
-		if name == 'Валера':
-			return name
-			print('Валера нашелся')
