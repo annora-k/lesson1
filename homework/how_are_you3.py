@@ -1,13 +1,4 @@
-def get_answer(question):
-	
-	answer = {
-		"привет": "И тебе привет!",
-		"как дела": "Лучше всех",
-		"пока": "Увидимся"
-	}
-	
-	return answer.get(question.lower(), 'Не понял вопроса')
-
+from answer import get_answer
 
 def ask_user():
 	while True:
@@ -21,6 +12,5 @@ def ask_user():
 
 		except KeyboardInterrupt:
 			print('\nНельзя так выйти, напиши "пока"')
-
 
 ask_user()
