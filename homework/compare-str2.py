@@ -3,12 +3,9 @@ def get_text(text1, text2):
 
 	if text1 == text2:
 		a  = 1
-
-	elif text1 != text2 and len(text1) > len(text2):
+	elif len(text1) > len(text2):
 		a = 2
-
-
-	elif  text1 != text2 and text2 == 'learn':
+	elif  text2 == 'learn':
 		a = 3
 
 	return a
