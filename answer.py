@@ -5,12 +5,7 @@ answer = {
 }
 
 
-
-
-def get_answer(question):
-
-
-
+def get_answer(question, answers):
 	return answer.get(question.lower())
 
 print(get_answer('ПРИВЕТ'))
