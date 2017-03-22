@@ -1,5 +1,5 @@
-with open('referat.txt', 'r', encoding = 'utf-8') as file:
-	words = file.read()
+with open('referat.txt', 'r', encoding = 'utf-8') as f:
+	words = f.read()
 
 	numbers = words.split()
 	numbers= len(numbers)
