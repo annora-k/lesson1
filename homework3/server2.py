@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, abort, request
 from names import get_names
 
 app = Flask(__name__)
@@ -7,42 +7,41 @@ app = Flask(__name__)
 def index():
 	return 'Перейдите на страницу /names, чтобы увидеть имена'
 
+
 @app.route("/names")
 def print_names():
+	year = int(request.args.get('year'))
+
 	data = get_names("https://apidata.mos.ru/v1/datasets/2009/rows")
+
+	years_born = [name for name in data if name['Cells']['Year'] == year]
+
 	result = '''
-	<html>
-		<head></head>
-		<body>
-			<table border=1>
-				<tr>
-					<th>Имя</th>
-					<th>Год</th>
-					<th>Месяц</th>
-					<th>Количество</th>
-				</tr>
-		'''
-	if data:
-		for name in data:
-			born_year = name['Cells']['Year']
-			if born_year == 2017:
-				result += '<tr>'
-				result += '<td>{}</td>'.format(name['Cells']['Name'])
-				result += '<td>{}</td>'.format(name['Cells']['Year'])
-				result += '<td>{}</td>'.format(name['Cells']['Month'])
-				result += '<td>{}</td>'.format(name['Cells']['NumberOfPersons'])
-				result += '</tr>\n'
-			#else:
-			#	return 'Нет детей 2017 года'
+	<table>
+		<tr>
+			<th>Имя</th>
+			<th>Год</th>
+			<th>Месяц</th>
+			<th>Количество</th>
+		</tr>
+	'''
+	
+	for name in years_born:
+		result += '<tr>'
+		result += '<td>{}</td>'.format(name['Cells']['Name'])
+		result += '<td>{}</td>'.format(name['Cells']['Year'])
+		result += '<td>{}</td>'.format(name['Cells']['Month'])
+		result += '<td>{}</td>'.format(name['Cells']['NumberOfPersons'])
+		result += '</tr>\n'
 
 	result += '''
 			</table>
-		</body>
-	</html>
 	'''
 
-
+	
 	return result
+
+
 
 if __name__ == '__main__':
 	app.run(port=5001, debug=True)

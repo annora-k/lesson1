@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, abort, request
 from names import get_names
 
 app = Flask(__name__)
@@ -12,17 +12,14 @@ def index():
 def print_names():
 	data = get_names("https://apidata.mos.ru/v1/datasets/2009/rows")
 	result = '''
-	<html>
-		<head></head>
-		<body>
-			<table border=1>
-				<tr>
-					<th>Имя</th>
-					<th>Год</th>
-					<th>Месяц</th>
-					<th>Количество</th>
-				</tr>
-		'''
+	<table>
+		<tr>
+			<th>Имя</th>
+			<th>Год</th>
+			<th>Месяц</th>
+			<th>Количество</th>
+		</tr>
+	'''
 	if data:
 		for name in data:
 			result += '<tr>'
@@ -34,8 +31,6 @@ def print_names():
 
 	result += '''
 			</table>
-		</body>
-	</html>
 	'''
 
 	
@@ -48,20 +43,17 @@ def print_names():
 def year_born(years_born):
 	data = get_names("https://apidata.mos.ru/v1/datasets/2009/rows")
 	years_id = [name for name in data if name['Cells']['Year'] == years_born]
-	#if years_born in name['Cells']['Year']
+	
 	
 	result = '''
-	<html>
-		<head></head>
-		<body>
-			<table border=1>
-				<tr>
-					<th>Имя</th>
-					<th>Год</th>
-					<th>Месяц</th>
-					<th>Количество</th>
-				</tr>
-		'''
+	<table>
+		<tr>
+			<th>Имя</th>
+			<th>Год</th>
+			<th>Месяц</th>
+			<th>Количество</th>
+		</tr>
+	'''
 	if years_id:
 		for name in years_id:
 			result += '<tr>'
@@ -73,9 +65,7 @@ def year_born(years_born):
 
 	result += '''
 			</table>
-		</body>
-	</html>
-	'''
+		'''
 	
 
 
